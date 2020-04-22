@@ -1,0 +1,123 @@
+action_factory: null
+action_names:
+- utter_greet
+- utter_default
+- utter_ask_location
+- action_city
+- utter_ask_cuisine
+- action_get_cuisine
+- utter_ask_price
+- action_get_price
+- action_restaurant
+- utter_ask_ifmail
+- utter_ask_mail
+- action_mail_send
+- utter_email_Sent
+- utter_goodbye
+- action_reset
+- action_restarted
+actions:
+- utter_greet
+- utter_default
+- utter_ask_location
+- actions.ActionSearchCity
+- utter_ask_cuisine
+- actions.ActionGetCuisineSlection
+- utter_ask_price
+- actions.ActionGetPriceSelection
+- actions.ActionSearchRestaurants
+- utter_ask_ifmail
+- utter_ask_mail
+- actions.ActionMailSend
+- utter_email_Sent
+- utter_goodbye
+- actions.ActionResetSlots
+- actions.ActionRestarted
+config:
+  store_entities_as_slots: true
+entities:
+- location
+- cuisine
+- price
+- mail
+intents:
+- greet
+- affirm
+- deny
+- goodbye
+- thankyou
+- restaurant_search
+slots:
+  cuisine:
+    initial_value: unknown
+    type: rasa_core.slots.TextSlot
+  location:
+    initial_value: unknown
+    type: rasa_core.slots.TextSlot
+  location_type:
+    initial_value: false
+    type: rasa_core.slots.BooleanSlot
+  mail:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  mail_success:
+    initial_value: true
+    type: rasa_core.slots.BooleanSlot
+  noresults:
+    initial_value: true
+    type: rasa_core.slots.BooleanSlot
+  num:
+    initial_value: 0
+    max_value: 1.0
+    min_value: 0.0
+    type: rasa_core.slots.FloatSlot
+  price:
+    initial_value:
+    - 300
+    - 700
+    type: rasa_core.slots.ListSlot
+  restaurants:
+    initial_value: null
+    type: rasa_core.slots.ListSlot
+templates:
+  utter_ask_cuisine:
+  - buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Mexican
+      title: Mexican
+    - payload: Italian
+      title: Italian
+    - payload: American
+      title: American
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    text: what kind of cuisine would you like?
+  utter_ask_ifmail:
+  - text: Should I send you details of all the restaurants on email?
+  utter_ask_location:
+  - text: In what location?
+  utter_ask_mail:
+  - text: What is your email address?
+  utter_ask_price:
+  - buttons:
+    - payload: <300
+      title: Lesser than Rs. 300
+    - payload: 300-700
+      title: Rs. 300 to 700
+    - payload: '>700'
+      title: More than 700
+    text: what price range are you looking at?
+  utter_default:
+  - text: default message
+  utter_email_Sent:
+  - text: The details have been emailed to you
+  utter_goodbye:
+  - text: goodbye :(
+  - text: Bye-bye
+  utter_greet:
+  - text: hey there! How may i help you
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going. How May I help you Today
